@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>So sánh Thuật Toán Học Máy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>So sánh KNN, ID3 &amp; Naive Bayes</h1>
+      <p class="subtitle">
+        Tải file CSV để huấn luyện mô hình, sau đó nhập văn bản để dự đoán nhãn
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- UPLOAD -->
+    <section id="upload" class="card">
+      <h2>1. Tải dữ liệu huấn luyện (.CSV)</h2>
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+      <form action="/run-models" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required />
+        <button type="submit">Huấn luyện mô hình</button>
+      </form>
+    </section>
+
+    <!-- ACCURACY RESULTS -->
+    {% if acc_knn and acc_id3 and acc_nb %}
+    <section id="results" class="card">
+      <h2>2. Độ chính xác mô hình</h2>
+      <ul>
+        <li><strong>KNN:</strong> <span>{{ acc_knn }}</span></li>
+        <li><strong>ID3:</strong> <span>{{ acc_id3 }}</span></li>
+        <li><strong>Naive Bayes:</strong> <span>{{ acc_nb }}</span></li>
+      </ul>
+    </section>
+    {% endif %}
+
+    <!-- PREDICT -->
+    <section id="predict" class="card">
+      <h2>3. Dự đoán nhãn từ văn bản</h2>
+      <form action="/predict" method="post">
+        <textarea name="test_text" rows="5" placeholder="Nhập văn bản cần phân loại..." required></textarea>
+        <button type="submit">Dự đoán</button>
+      </form>
+    </section>
+
+    <!-- PREDICTION RESULTS -->
+    {% if pred_knn or pred_id3 or pred_nb %}
+    <section id="prediction-results" class="card">
+      <h2>4. Kết quả dự đoán</h2>
+      <ul>
+        <li><strong>KNN dự đoán:</strong> <span>{{ pred_knn }}</span></li>
+        <li><strong>ID3 dự đoán:</strong> <span>{{ pred_id3 }}</span></li>
+        <li><strong>Naive Bayes dự đoán:</strong> <span>{{ pred_nb }}</span></li>
+      </ul>
+    </section>
+    {% endif %}
+
+    <section id="label-info" class="card">
+      <h2>5. Giải thích các nhãn</h2>
+      <ul>
+        <li><strong>vision:</strong> Xử lý ảnh, video (object detection, segmentation, …)</li>
+        <li><strong>NLP:</strong> Xử lý ngôn ngữ tự nhiên (phân loại văn bản, tóm tắt, …)</li>
+        <li><strong>robotics:</strong> Robotics (SLAM, navigation, control, …)</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nhóm 4. All rights reserved.</p>
+  </footer>
+</body>
+</html>

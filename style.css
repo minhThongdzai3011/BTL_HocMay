@@ -1,0 +1,148 @@
+/* Biến màu */
+:root {
+  --primary: #2575fc;
+  --secondary: #752dc1;
+  --accent: #f39c12;
+  --bg-light: #f5f6fa;
+  --text-dark: #333;
+  --card-bg: #ffffff;
+  --error: #c0392b;
+}
+
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Hero banner */
+.hero {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Container grid */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: -40px auto 60px;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+}
+
+/* Card */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input[type="file"],
+form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+form textarea {
+  min-height: 120px;
+}
+
+form button {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background-color: #d88e0d;
+}
+
+/* Lỗi */
+.error {
+  color: var(--error);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Kết quả */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #666;
+}
